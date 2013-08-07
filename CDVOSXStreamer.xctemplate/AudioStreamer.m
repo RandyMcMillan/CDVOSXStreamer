@@ -764,7 +764,7 @@ void ASReadStreamCallBack
 			if (state != AS_STOPPING &&
 				state != AS_STOPPED)
 			{
-				NSLog(@"### Not starting audio thread. State code is: %ld", state);
+				NSLog(@"### Not starting audio thread. State code is: %d", state);
 			}
 			self.state = AS_INITIALIZED;
 #if !__has_feature(objc_arc)
@@ -798,7 +798,9 @@ void ASReadStreamCallBack
 		// initialize a mutex and condition so that we can block on buffers in use.
 		pthread_mutex_init(&queueBuffersMutex, NULL);
 		pthread_cond_init(&queueBufferReadyCondition, NULL);
-		
+	
+        
+        
 		if (![self openReadStream])
 		{
 			goto cleanup;

@@ -29,6 +29,8 @@
 #import <Cordova/CDVCommandDelegateImpl.h>
 #import <Cordova/CDVCommandQueue.h>
 
+@class  AudioStreamer;
+
 @protocol ___FILEBASENAME___Delegate <NSObject>
 
 /*
@@ -52,7 +54,17 @@
 @end
 
 // @interface ___FILEBASENAME___ViewController : CDVViewController <UIWebViewDelegate>{}
-@interface ___FILEBASENAME___ViewController : CDVViewController {}
+@interface ___FILEBASENAME___ViewController : CDVViewController {
+
+
+    IBOutlet NSTextField *downloadSourceField;
+	IBOutlet NSButton *button;
+	IBOutlet NSTextField *positionLabel;
+	IBOutlet NSSlider *progressSlider;
+	AudioStreamer *streamer;
+	NSTimer *progressUpdateTimer;
+
+}
 
 @property (nonatomic, strong) IBOutlet WebView		*webView;
 @property (nonatomic, strong) IBOutlet NSButton		*closeBtn;
@@ -77,5 +89,12 @@
 - (IBAction)onSafariButtonPress:(id)sender;
 - (void)loadURL:(NSString *)url;
 - (void)closeBrowser;
+
+
+- (IBAction)buttonPressed:(id)sender;
+- (void)spinButton;
+- (void)updateProgress:(NSTimer *)aNotification;
+- (IBAction)sliderMoved:(NSSlider *)aSlider;
+
 
 @end
